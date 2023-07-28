@@ -85,6 +85,7 @@
                 </ul>
             </li>
             {{-- @endcan --}}
+            {{-- fitur ini dihapus --}}
             {{-- @can('division') --}}
             <li class=" nav-item"><a href="#"><i
                         class="{{ request()->is('backsite/work_category') || request()->is('backsite/work_category/*') || request()->is('backsite/*/work_category') || request()->is('backsite/*/work_category/*') || request()->is('backsite/work_type') || request()->is('backsite/work_type/*') || request()->is('backsite/*/work_type') || request()->is('backsite/*/work_type/*') ? 'bx bx-briefcase bx-flashing' : 'bx bx-briefcase' }}"></i><span
@@ -107,7 +108,7 @@
                     </li>
                     {{-- @endcan --}}
                 </ul>
-            </li>
+            </li> --}}
             {{-- @endcan --}}
 
             {{-- @can('employee') --}}
