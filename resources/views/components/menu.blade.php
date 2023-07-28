@@ -196,12 +196,6 @@
 
             <li class=" navigation-header"><span data-i18n="Data">Data</span><i class="la la-ellipsis-h"
                     data-toggle="tooltip" data-placement="right" data-original-title="Data"></i></li>
-            {{-- @can('work_program') --}}
-            <li class=" nav-item"><a href="{{ route('backsite.work_program.index') }}"><i
-                        class="{{ request()->is('backsite/work_program') || request()->is('backsite/work_program/*') || request()->is('backsite/*/work_program') || request()->is('backsite/*/work_program/*') ? 'bx bx-book-bookmark bx-flashing' : 'bx bx-book-bookmark' }}"></i><span
-                        class="menu-title" data-i18n="Program Kerja">Program Kerja</span></a>
-            </li>
-            {{-- @endcan --}}
             {{-- @can('device_hardware') --}}
             <li class=" nav-item"><a href="{{ route('backsite.device_hardware.index') }}"><i
                         class="{{ request()->is('backsite/device_hardware') || request()->is('backsite/device_hardware/*') || request()->is('backsite/*/device_hardware') || request()->is('backsite/*/device_hardware/*') ? 'bx bx-laptop bx-flashing' : 'bx bx-laptop' }}"></i><span

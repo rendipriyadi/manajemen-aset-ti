@@ -90,8 +90,6 @@ Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => ['aut
     Route::resource('work_type', WorkTypeController::class);
     // employee
     Route::resource('employee', EmployeeController::class);
-    // work_program
-    Route::resource('work_program', WorkProgramController::class);
     // software
     Route::controller(SoftwareController::class)->group(function () {
         Route::post('/software/form_upload', 'form_upload')->name('software.form_upload');
