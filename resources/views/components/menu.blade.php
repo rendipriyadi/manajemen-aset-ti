@@ -85,30 +85,6 @@
                 </ul>
             </li>
             {{-- @endcan --}}
-            {{-- @can('division') --}}
-            <li class=" nav-item"><a href="#"><i
-                        class="{{ request()->is('backsite/work_category') || request()->is('backsite/work_category/*') || request()->is('backsite/*/work_category') || request()->is('backsite/*/work_category/*') || request()->is('backsite/work_type') || request()->is('backsite/work_type/*') || request()->is('backsite/*/work_type') || request()->is('backsite/*/work_type/*') ? 'bx bx-briefcase bx-flashing' : 'bx bx-briefcase' }}"></i><span
-                        class="menu-title" data-i18n="Pekerjaan">Pekerjaan</span></a>
-                <ul class="menu-content">
-                    {{-- @can('division') --}}
-                    <li
-                        class="{{ request()->is('backsite/work_category') || request()->is('backsite/work_category/*') || request()->is('backsite/*/work_category') || request()->is('backsite/*/work_category/*') ? 'active' : '' }} ">
-                        <a class="menu-item" href="{{ route('backsite.work_category.index') }}">
-                            <i></i><span>Kategori Pekerjaan</span>
-                        </a>
-                    </li>
-                    {{-- @endcan --}}
-                    {{-- @can('department') --}}
-                    <li
-                        class="{{ request()->is('backsite/work_type') || request()->is('backsite/work_type/*') || request()->is('backsite/*/work_type') || request()->is('backsite/*/work_type/*') ? 'active' : '' }} ">
-                        <a class="menu-item" href="{{ route('backsite.work_type.index') }}">
-                            <i></i><span>Jenis Pekerjaan</span>
-                        </a>
-                    </li>
-                    {{-- @endcan --}}
-                </ul>
-            </li>
-            {{-- @endcan --}}
 
             {{-- @can('employee') --}}
             <li class=" nav-item"><a href="{{ route('backsite.employee.index') }}"><i

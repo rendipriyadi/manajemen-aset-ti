@@ -84,10 +84,6 @@ Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => ['aut
         Route::post('section/get_section', 'get_section')->name('section.get_section');
     });
     Route::resource('section', SectionController::class);
-    // work_category
-    Route::resource('work_category', WorkCategoryController::class);
-    // work_type
-    Route::resource('work_type', WorkTypeController::class);
     // employee
     Route::resource('employee', EmployeeController::class);
     // software
