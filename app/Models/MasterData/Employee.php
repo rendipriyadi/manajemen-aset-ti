@@ -2,6 +2,7 @@
 
 namespace App\Models\MasterData;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -60,5 +61,10 @@ class Employee extends Model
     {
         // 2 parameter (path model, field foreign key)
         return $this->hasMany('App\Models\Data\Hardware\DeviceUser', 'employee_id');
+    }
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'employee_id');
     }
 }

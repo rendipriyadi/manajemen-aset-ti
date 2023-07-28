@@ -24,7 +24,7 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => [
+            'employee_id' => [
                 'required', 'string', 'max:255',
             ],
             'job_position' => [

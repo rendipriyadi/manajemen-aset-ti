@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\MasterData\Employee;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -24,7 +25,7 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name',
+        'employee_id',
         'email',
         'password',
     ];
@@ -65,9 +66,8 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\ManagementAccess\DetailUser', 'user_id');
     }
     // one to many
-    public function daily_activity()
+    public function employee()
     {
-        // 2 parameter (path model, field foreign key)
-        return $this->hasMany('App\Models\Data\DailyActivity', 'users_id');
+        return $this->belongsTo(Employee::class, 'employee_id', 'nip');
     }
 }

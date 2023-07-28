@@ -72,17 +72,23 @@
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="name">Name <code
+                                                    <label class="col-md-3 label-control" for="employee_id">Nama <code
                                                             style="color:red;">required</code></label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="text" id="name" name="name"
-                                                            class="form-control"
-                                                            value="{{ old('name', isset($user->name) ? $user->name : '') }}"
-                                                            autocomplete="off" required>
+                                                        <select name="employee_id" id="employee_id"
+                                                            class="form-control select2" required>
+                                                            <option value="{{ '' }}" disabled selected>Choose
+                                                            </option>
+                                                            @foreach ($employee as $key => $employee_item)
+                                                                <option value="{{ $employee_item->nip }}">
+                                                                    {{ $employee_item->nip == $user->employee_id ? 'selected' : '' }}
+                                                                    {{ $employee_item->name }}</option>
+                                                            @endforeach
+                                                        </select>
 
-                                                        @if ($errors->has('name'))
+                                                        @if ($errors->has('employee_id'))
                                                             <p style="font-style: bold; color: red;">
-                                                                {{ $errors->first('name') }}</p>
+                                                                {{ $errors->first('employee_id') }}</p>
                                                         @endif
                                                     </div>
                                                 </div>
@@ -154,22 +160,10 @@
                                                                 Manajer</option>
                                                             <option value="2"
                                                                 {{ $user->detail_user->job_position == 2 ? 'selected' : '' }}>
-                                                                Kepala Departemen</option>
+                                                                Administrasi</option>
                                                             <option value="3"
                                                                 {{ $user->detail_user->job_position == 3 ? 'selected' : '' }}>
-                                                                Administrasi</option>
-                                                            <option value="4"
-                                                                {{ $user->detail_user->job_position == 4 ? 'selected' : '' }}>
                                                                 Hardware & Jaringan</option>
-                                                            <option value="5"
-                                                                {{ $user->detail_user->job_position == 5 ? 'selected' : '' }}>
-                                                                Peralatan Tol</option>
-                                                            <option value="6"
-                                                                {{ $user->detail_user->job_position == 6 ? 'selected' : '' }}>
-                                                                Sistem Informasi</option>
-                                                            <option value="7"
-                                                                {{ $user->detail_user->job_position == 7 ? 'selected' : '' }}>
-                                                                Senior Officer</option>
                                                         </select>
 
                                                         @if ($errors->has('job_position'))

@@ -19,27 +19,17 @@ class TypeUserSeeder extends Seeder
         // create data here
         $type_user = [
             [
-                'name' => 'Admin',
+                'name' => 'Staf Admin',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'name' => 'Staff',
+                'name' => 'Staf Hardware & Jaringan',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'name' => 'Kepala Seksi',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s'),
-            ],
-            [
-                'name' => 'Kepala Departemen',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s'),
-            ],
-            [
-                'name' => 'Manager',
+                'name' => 'Manajer',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],

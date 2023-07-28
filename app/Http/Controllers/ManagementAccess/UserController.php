@@ -17,6 +17,7 @@ use App\Http\Requests\ManagementAccess\User\UpdateUserRequest;
 use App\Models\User;
 use App\Models\ManagementAccess\DetailUser;
 use App\Models\ManagementAccess\TypeUser;
+use App\Models\MasterData\Employee;
 
 class UserController extends Controller
 {
@@ -27,10 +28,15 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::where('name', '!=', 'Administrator')->orderBy('name', 'asc')->get();
+        $user = User::whereHas('detail_user.type_user', function ($query) {
+            $query->orderBy('name', 'asc');
+        })->get();
         $type_user = TypeUser::where('name', '!=', 'Admin')->orderBy('name', 'asc')->get();
+        $employee = Employee::whereHas('division', function ($query) {
+            $query->where('name', 'Teknologi Informasi');
+        })->get();
 
-        return view('pages.management-access.user.index', compact('user', 'type_user'));
+        return view('pages.management-access.user.index', compact('user', 'type_user', 'employee'));
     }
 
     /**
@@ -102,8 +108,11 @@ class UserController extends Controller
         $user = User::find($decrypt_id);
 
         $type_user = TypeUser::where('name', '!=', 'Admin')->orderBy('name', 'asc')->get();
+        $employee = Employee::whereHas('division', function ($query) {
+            $query->where('name', 'Teknologi Informasi');
+        })->get();
 
-        return view('pages.management-access.user.edit', compact('user', 'type_user'));
+        return view('pages.management-access.user.edit', compact('user', 'type_user', 'employee'));
     }
 
     /**

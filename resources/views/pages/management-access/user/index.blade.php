@@ -75,16 +75,22 @@
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="name">Nama <code
+                                                    <label class="col-md-3 label-control" for="employee_id">Nama <code
                                                             style="color:red;">required</code></label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="text" id="name" name="name"
-                                                            class="form-control" placeholder="example John Doe or Jane"
-                                                            value="{{ old('name') }}" autocomplete="off" required>
+                                                        <select name="employee_id" id="employee_id"
+                                                            class="form-control select2" required>
+                                                            <option value="{{ '' }}" disabled selected>Choose
+                                                            </option>
+                                                            @foreach ($employee as $key => $employee_item)
+                                                                <option value="{{ $employee_item->nip }}">
+                                                                    {{ $employee_item->name }}</option>
+                                                            @endforeach
+                                                        </select>
 
-                                                        @if ($errors->has('name'))
+                                                        @if ($errors->has('employee_id'))
                                                             <p style="font-style: bold; color: red;">
-                                                                {{ $errors->first('name') }}</p>
+                                                                {{ $errors->first('employee_id') }}</p>
                                                         @endif
                                                     </div>
                                                 </div>
@@ -150,12 +156,8 @@
                                                                 Choose
                                                             </option>
                                                             <option value="1">Manajer</option>
-                                                            <option value="2">Kepala Departemen</option>
-                                                            <option value="3">Administrasi</option>
-                                                            <option value="4">Hardware & Jaringan</option>
-                                                            <option value="5">Peralatan Tol</option>
-                                                            <option value="6">Sistem Informasi</option>
-                                                            <option value="7">Senior Officer</option>
+                                                            <option value="2">Administrasi</option>
+                                                            <option value="3">Hardware & Jaringan</option>
                                                         </select>
 
                                                         @if ($errors->has('job_position'))
@@ -265,7 +267,8 @@
                                                     @forelse($user as $key => $user_item)
                                                         <tr data-entry-id="{{ $user_item->id }}">
                                                             <td class="text-center">{{ $loop->iteration }}</td>
-                                                            <td class="text-center">{{ $user_item->name ?? '' }}</td>
+                                                            <td class="text-center">{{ $user_item->employee->name ?? '' }}
+                                                            </td>
                                                             <td class="text-center">{{ $user_item->email ?? '' }}</td>
                                                             <td class="text-center">
                                                                 <span
@@ -277,22 +280,10 @@
                                                                         class="badge badge-success">{{ 'Manager' }}</span>
                                                                 @elseif($user_item->detail_user->job_position == 2)
                                                                     <span
-                                                                        class="badge badge-cyan">{{ 'Kepala Departemen' }}</span>
+                                                                        class="badge badge-cyan">{{ 'Administrasi' }}</span>
                                                                 @elseif($user_item->detail_user->job_position == 3)
                                                                     <span
-                                                                        class="badge badge-danger">{{ 'Administrasi' }}</span>
-                                                                @elseif($user_item->detail_user->job_position == 4)
-                                                                    <span
-                                                                        class="badge badge-warning">{{ 'Hardware & Jaringan' }}</span>
-                                                                @elseif($user_item->detail_user->job_position == 5)
-                                                                    <span
-                                                                        class="badge badge-secondary">{{ 'Peralatan Tol' }}</span>
-                                                                @elseif($user_item->detail_user->job_position == 6)
-                                                                    <span
-                                                                        class="badge badge-info">{{ 'Sistem Informasi' }}</span>
-                                                                @elseif($user_item->detail_user->job_position == 7)
-                                                                    <span
-                                                                        class="badge badge-primary">{{ 'Senior Officer' }}</span>
+                                                                        class="badge badge-danger">{{ 'Hardware & Jaringan' }}</span>
                                                                 @else
                                                                     <span>{{ 'N/A' }}</span>
                                                                 @endif
