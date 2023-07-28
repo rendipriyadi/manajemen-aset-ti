@@ -162,7 +162,7 @@
                                                 <div class="col-md-7">
                                                     <input type="text" id="tgl_deploy" name="tgl_deploy"
                                                         class="form-control"
-                                                        value="{{ old('tgl_deploy', isset($device_division->tgl_deploy) ? $device_user->tgl_deploy : '') }}"
+                                                        value="{{ old('tgl_deploy', isset($device_division->tgl_deploy) ? $device_division->tgl_deploy : '') }}"
                                                         required />
 
                                                     @if ($errors->has('tgl_deploy'))
