@@ -33,7 +33,7 @@ class UpdateDeviceUserRequest extends FormRequest
             'device_additional_id' => [
                 'required',
             ],
-            'location_detail_id' => [
+            'location_id' => [
                 'required',
             ],
         ];

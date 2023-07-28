@@ -123,9 +123,7 @@
     <tr>
         <th>Lokasi</th>
         <td>
-            {{ $device_user->location_detail->location_room->name ?? 'N/A' }} -
-            {{ $device_user->location_detail->location_sub->name ?? 'N/A' }} -
-            {{ $device_user->location_detail->location->name ?? 'N/A' }}
+            {{ $device_user->location->name ?? 'N/A' }}
         </td>
     </tr>
     <tr>

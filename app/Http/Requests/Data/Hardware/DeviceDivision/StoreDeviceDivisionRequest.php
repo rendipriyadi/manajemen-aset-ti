@@ -31,7 +31,7 @@ class StoreDeviceDivisionRequest extends FormRequest
             'device_more_id' => [
                 'required',
             ],
-            'location_detail_id' => [
+            'location_id' => [
                 'required',
             ],
         ];

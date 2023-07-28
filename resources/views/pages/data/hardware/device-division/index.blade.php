@@ -134,7 +134,7 @@
                                                                 @endforeach
                                                             </td>
                                                             <td class="text-center">
-                                                                {{ $device_division_item->location_detail->location_room->name ?? 'N/A' }}
+                                                                {{ $device_division_item->location->name ?? 'N/A' }}
                                                             </td>
                                                             <td class="text-center">
                                                                 @if ($device_division_item->status == 1)

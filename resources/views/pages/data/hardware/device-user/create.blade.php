@@ -221,19 +221,17 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-md-3 label-control" for="location_detail_id">Lokasi
+                                                <label class="col-md-3 label-control" for="location_id">Lokasi
                                                     <code style="color:red;">optional</code></label>
                                                 <div class="col-md-7">
-                                                    <select name="location_detail_id" id="location_detail_id"
+                                                    <select name="location_id" id="location_id"
                                                         class="form-control select2">
                                                         <option value="{{ '' }}" disabled selected>
                                                             Pilih Lokasi
                                                         </option>
-                                                        @foreach ($location_detail as $key => $location_detail_item)
-                                                            <option value="{{ $location_detail_item->id }}">
-                                                                {{ $location_detail_item->location_room->name }} -
-                                                                {{ $location_detail_item->location_sub->name }} -
-                                                                {{ $location_detail_item->location->name }}
+                                                        @foreach ($location as $key => $location_item)
+                                                            <option value="{{ $location_item->id }}">
+                                                                {{ $location_item->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>

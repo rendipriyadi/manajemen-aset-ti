@@ -503,9 +503,7 @@
                 </td>
                 <td class="c9" colspan="1" rowspan="1">
                     <p class="c5"><span class="c0">
-                            {{ $device_division_item->location_detail->location_room->name ?? 'N/A' }} -
-                            {{ $device_division_item->location_detail->location_sub->name ?? 'N/A' }} -
-                            {{ $device_division_item->location_detail->location->name ?? 'N/A' }}
+                            {{ $device_division_item->location->name ?? 'N/A' }}
                         </span>
                     </p>
                 </td>

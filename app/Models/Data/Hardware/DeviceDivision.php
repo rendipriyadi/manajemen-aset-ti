@@ -25,7 +25,7 @@ class DeviceDivision extends Model
     protected $fillable = [
         'division_id',
         'device_more_id',
-        'location_detail_id',
+        'location_id',
         'file',
         'status',
         'tgl_deploy',
@@ -42,10 +42,10 @@ class DeviceDivision extends Model
         return $this->belongsTo('App\Models\MasterData\Division\Division', 'division_id', 'id');
     }
     // one to many
-    public function location_detail()
+    public function location()
     {
         // 3 parameter (path model, field foreign key, field primary key from table hasMany/hasOne)
-        return $this->belongsTo('App\Models\MasterData\Location\LocationDetail', 'location_detail_id', 'id');
+        return $this->belongsTo('App\Models\MasterData\Location\Location', 'location_id', 'id');
     }
     // one to many
     public function software()

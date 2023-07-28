@@ -1021,9 +1021,7 @@
                 </td>
                 <td class="c42" colspan="1" rowspan="1">
                     <p class="c7"><span class="c6">
-                            {{ $device_user_item->location_detail->location_room->name }} -
-                            {{ $device_user_item->location_detail->location_sub->name }} -
-                            {{ $device_user_item->location_detail->location->name }}
+                            {{ $device_user_item->location->name }}
                         </span>
                     </p>
                 </td>

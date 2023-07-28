@@ -2,6 +2,8 @@
 
 namespace App\Models\MasterData\Location;
 
+use App\Models\Data\Hardware\DeviceDivision;
+use App\Models\Data\Hardware\DeviceUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -29,10 +31,13 @@ class Location extends Model
         'deleted_at',
     ];
 
-    // one to many
-    public function location_detail()
+    public function device_user()
     {
-        // 2 parameter (path model, field foreign key)
-        return $this->hasMany('App\Models\MasterData\Location\Location', 'location_id');
+        return $this->hasMany(DeviceUser::class, 'location_id');
+    }
+
+    public function device_division()
+    {
+        return $this->hasMany(DeviceDivision::class, 'location_id');
     }
 }

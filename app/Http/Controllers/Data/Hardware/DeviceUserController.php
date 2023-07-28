@@ -21,10 +21,10 @@ use App\Models\MasterData\Software\Software;
 
 // use library here
 use App\Models\Data\Hardware\DeviceAdditional;
-use App\Models\MasterData\Location\LocationDetail;
 use App\Http\Requests\Data\Hardware\StoreExportPdfRequest;
 use App\Http\Requests\Data\Hardware\DeviceUser\StoreDeviceUserRequest;
 use App\Http\Requests\Data\Hardware\DeviceUser\UpdateDeviceUserRequest;
+use App\Models\MasterData\Location\Location;
 
 class DeviceUserController extends Controller
 {
@@ -53,9 +53,9 @@ class DeviceUserController extends Controller
         $device_additional = DeviceAdditional::where('status', 1)->orderby('type_device_id', 'asc')->get();
         $software = Software::orderby('software_category', 'asc')->get();
         $employee = Employee::orderby('name', 'asc')->get();
-        $location_detail = LocationDetail::orderby('location_room_id', 'asc')->get();
+        $location = Location::orderby('name', 'asc')->get();
 
-        return view('pages.data.hardware.device-user.create', compact('device_pc', 'device_monitor', 'device_more', 'device_additional', 'software', 'employee', 'location_detail'));
+        return view('pages.data.hardware.device-user.create', compact('device_pc', 'device_monitor', 'device_more', 'device_additional', 'software', 'employee', 'location'));
     }
 
     /**
@@ -132,9 +132,9 @@ class DeviceUserController extends Controller
         $device_additional = DeviceAdditional::orderby('type_device_id', 'asc')->get();
         $software = Software::orderby('software_category', 'asc')->get();
         $employee = Employee::orderby('name', 'asc')->get();
-        $location_detail = LocationDetail::orderby('location_room_id', 'asc')->get();
+        $location = Location::orderby('name', 'asc')->get();
 
-        return view('pages.data.hardware.device-user.edit', compact('device_user', 'device_pc', 'device_monitor', 'device_more', 'device_additional', 'software', 'employee', 'location_detail'));
+        return view('pages.data.hardware.device-user.edit', compact('device_user', 'device_pc', 'device_monitor', 'device_more', 'device_additional', 'software', 'employee', 'location'));
     }
 
     /**

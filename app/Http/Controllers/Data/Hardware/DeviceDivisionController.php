@@ -17,10 +17,10 @@ use App\Models\Data\Hardware\DeviceMore;
 // use library here
 use App\Models\Data\Hardware\DeviceDivision;
 use App\Models\MasterData\Division\Division;
-use App\Models\MasterData\Location\LocationDetail;
 use App\Http\Requests\Data\Hardware\StoreExportPdfRequest;
 use App\Http\Requests\Data\Hardware\DeviceDivision\StoreDeviceDivisionRequest;
 use App\Http\Requests\Data\Hardware\DeviceDivision\UpdateDeviceDivisionRequest;
+use App\Models\MasterData\Location\Location;
 
 class DeviceDivisionController extends Controller
 {
@@ -45,9 +45,9 @@ class DeviceDivisionController extends Controller
     {
         $device_more = DeviceMore::where('status', 1)->orderby('no_asset', 'asc')->get();
         $division = Division::orderby('name', 'asc')->get();
-        $location_detail = LocationDetail::orderby('location_room_id', 'asc')->get();
+        $location = Location::orderby('name', 'asc')->get();
 
-        return view('pages.data.hardware.device-division.create', compact('device_more', 'division', 'location_detail'));
+        return view('pages.data.hardware.device-division.create', compact('device_more', 'division', 'location'));
     }
 
     /**
@@ -108,9 +108,9 @@ class DeviceDivisionController extends Controller
 
         $device_more = DeviceMore::orderby('no_asset', 'asc')->get();
         $division = Division::orderby('name', 'asc')->get();
-        $location_detail = LocationDetail::orderby('location_room_id', 'asc')->get();
+        $location = Location::orderby('name', 'asc')->get();
 
-        return view('pages.data.hardware.device-division.edit', compact('device_division', 'device_more', 'division', 'location_detail'));
+        return view('pages.data.hardware.device-division.edit', compact('device_division', 'device_more', 'division', 'location'));
     }
 
     /**
