@@ -151,26 +151,6 @@
             $(this).parents('tr').remove();
         });
 
-        // create multiple input ip address more
-        $("#btnPlusMore").click(function() {
-            $("#tableMore").append(`
-                <tr>
-                    <td>
-                        <input type="text" id="port" name="port[]" class="form-control" value="{{ old('port') }}" autocomplete="off">
-                    </td>
-                    <td>
-                        <input type="text" id="ip_address" name="ip_address[]" class="form-control" value="{{ old('ip_address') }}" maxlength="15" autocomplete="off">
-                    </td>
-                    <td>
-                        <input type="text" id="keterangan" name="keterangan[]" class="form-control" value="{{ old('keterangan') }}" autocomplete="off">
-                    </td>
-                    <td>
-                        <button type="button" class="btn-sm btn-danger" id="btnMinMore"><i class="la la-minus"></i></button>
-                    </td>
-                </tr>
-            `);
-        });
-
         $(document).on('click', '#btnMinMore', function() {
             $(this).parents('tr').remove();
         });

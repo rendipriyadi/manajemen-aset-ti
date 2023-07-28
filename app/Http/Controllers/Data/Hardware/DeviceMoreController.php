@@ -6,11 +6,12 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 // request
-use Barryvdh\Snappy\Facades\SnappyPdf;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Data\Hardware\DeviceMore;
+
 // use library here
-use App\Models\Data\Hardware\IpAddressMore;
+use Barryvdh\Snappy\Facades\SnappyPdf;
+
 
 // use model here
 use App\Models\MasterData\Hardware\TypeDevice;
@@ -61,17 +62,6 @@ class DeviceMoreController extends Controller
         // store to database
         $device_more = DeviceMore::create($data);
 
-        // save to ip_address_more
-        foreach ($request->ip_address  as $key => $ip_address) {
-            $data_ip = [
-                'device_more_id' =>   $device_more['id'],
-                'port' => $request->port[$key],
-                'ip_address' => $ip_address,
-                'keterangan' => $request->keterangan[$key]
-            ];
-            IpAddressMore::create($data_ip);
-        }
-
         alert()->success('Sukses', 'Data berhasil ditambahkan');
         return redirect()->route('backsite.device_hardware.index');
     }
@@ -88,10 +78,9 @@ class DeviceMoreController extends Controller
         $decrypt_id = decrypt($id);
         $device_more = DeviceMore::find($decrypt_id);
 
-        $ip_address = IpAddressMore::where('device_more_id', $device_more['id'])->get();
         $troubleshoot_device_more = TroubleshootDeviceMore::where('device_more_id', $device_more['id'])->get();
 
-        return view('pages.data.hardware.device-more.show', compact('device_more', 'ip_address', 'troubleshoot_device_more'));
+        return view('pages.data.hardware.device-more.show', compact('device_more', 'troubleshoot_device_more'));
     }
 
     /**
@@ -109,10 +98,7 @@ class DeviceMoreController extends Controller
         // consumables
         $consumables = TypeDevice::where('category', 'Perangkat Tambahan')->orderby('name', 'asc')->get();
 
-        // ip_address_pc
-        $ip_address = IpAddressMore::where('device_more_id', $device_more['id'])->get();
-
-        return view('pages.data.hardware.device-more.edit', compact('device_more', 'consumables', 'ip_address'));
+        return view('pages.data.hardware.device-more.edit', compact('device_more', 'consumables'));
     }
 
     /**
@@ -143,31 +129,6 @@ class DeviceMoreController extends Controller
         // update to database
         $device_more->update($data);
 
-
-        // update ip_address_more
-        if ($request->ip_address) {
-            foreach ($request->ip_address as $key => $pc) {
-                $ip = IpAddressMore::find($request->id[$key]);
-                $ip->port = $request->port[$key];
-                $ip->ip_address = $pc;
-                $ip->keterangan = $request->keterangan[$key];
-                $ip->save();
-            }
-        }
-
-        // save to ip_address_more
-        if ($request->address_ip) {
-            foreach ($request->address_ip  as $key => $ip_address) {
-                $data_ip = [
-                    'device_more_id' =>   $device_more['id'],
-                    'port' => $request->port_ip[$key],
-                    'ip_address' => $ip_address,
-                    'keterangan' => $request->keterangan_ip[$key]
-                ];
-                IpAddressMore::create($data_ip);
-            }
-        }
-
         alert()->success('Sukses', 'Data berhasil diupdate');
         return redirect()->route('backsite.device_hardware.index');
     }
@@ -195,25 +156,8 @@ class DeviceMoreController extends Controller
         // hapus location
         $device_more->forceDelete();
 
-        // delete data ip_address_more
-        $ip_address = IpAddressMore::where('device_more_id', $decrypt_id)->forceDelete();
-
         alert()->success('Sukses', 'Data berhasil dihapus');
         return back();
-    }
-
-    // hapus ip_device_more
-    public function delete_ip(Request $request)
-    {
-        $ip_address = IpAddressMore::find($request->id);
-
-        $ip_address->forceDelete();
-
-        $msg = [
-            'sukses' => 'Data berhasil dihapus'
-        ];
-
-        return response()->json($msg);
     }
 
     // get form riwayat kerusakan

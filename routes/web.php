@@ -108,7 +108,6 @@ Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => ['aut
     Route::resource('device_hardware', DeviceController::class);
     // hardware_pc
     Route::controller(DevicePcController::class)->group(function () {
-        Route::post('/device_pc/delete_ip', 'delete_ip')->name('device_pc.delete_ip');
         Route::post('/device_pc/form_kerusakan', 'form_upload')->name('device_pc.form_kerusakan');
         Route::post('/device_pc/create-keruskan', 'upload')->name('device_pc.create-kerusakan');
         Route::post('/device_pc/export_pdf', 'printPdf')->name('device_pc.export-pdf');
@@ -120,7 +119,6 @@ Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => ['aut
     Route::resource('device_additional', DeviceAdditionalController::class);
     // hardware_more
     Route::controller(DeviceMoreController::class)->group(function () {
-        Route::post('/device_more/delete_ip', 'delete_ip')->name('device_more.delete_ip');
         Route::post('/device_more/form_kerusakan', 'form_upload')->name('device_more.form_kerusakan');
         Route::post('/device_more/create-keruskan', 'upload')->name('device_more.create-kerusakan');
         Route::post('/device_more/export_pdf', 'printPdf')->name('device_more.export-pdf');

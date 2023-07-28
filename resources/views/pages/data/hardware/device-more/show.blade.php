@@ -42,21 +42,6 @@
 
 <table class="table table-bordered">
     <tr>
-        <th>Port</th>
-        <th>Ip Address</th>
-        <th>Keterangan</th>
-    </tr>
-    @foreach ($ip_address as $ip_address_item)
-        <tr>
-            <td>{{ isset($ip_address_item->port) ? $ip_address_item->port : 'N/A' }}</td>
-            <td>{{ isset($ip_address_item->ip_address) ? $ip_address_item->ip_address : 'N/A' }}</td>
-            <td>{{ isset($ip_address_item->keterangan) ? $ip_address_item->keterangan : 'N/A' }}</td>
-        </tr>
-    @endforeach
-</table>
-
-<table class="table table-bordered">
-    <tr>
         <th align="center">Tgl kerusakan</th>
         <th align="center">Keterangan</th>
     </tr>

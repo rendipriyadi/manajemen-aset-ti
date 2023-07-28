@@ -132,51 +132,6 @@
                                             <textarea rows="5" class="form-control summernote" id="description" name="description"></textarea>
                                         </div>
                                     </div>
-                                    <div class="form-group row" style="margin-left: 5px;">
-                                        <a class="btn btn-primary" data-toggle="collapse"
-                                            href="#multiCollapseExample2" role="button" aria-expanded="false"
-                                            aria-controls="multiCollapseExample2">Tambah IP Address</a>
-                                    </div>
-                                    <div class="row" style="margin-left: 5px;">
-                                        <div class="col">
-                                            <div class="collapse multi-collapse" id="multiCollapseExample2">
-                                                <div class="form-group row">
-                                                    <table align="center" width="100%" id="tableMore">
-                                                        <tr>
-                                                            <th>Port</th>
-                                                            <th>IP Address</th>
-                                                            <th>Keterangan</th>
-                                                            <th style="width:50px;">#</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <input type="text" id="port" name="port[]"
-                                                                    class="form-control" value="{{ old('port') }}"
-                                                                    autocomplete="off">
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" id="ip_address"
-                                                                    name="ip_address[]" class="form-control"
-                                                                    value="{{ old('ip_address') }}"
-                                                                    autocomplete="off">
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" id="keterangan"
-                                                                    name="keterangan[]" class="form-control"
-                                                                    value="{{ old('keterangan') }}"
-                                                                    autocomplete="off">
-                                                            </td>
-                                                            <td>
-                                                                <button type="button" class="btn-sm btn-success"
-                                                                    id="btnPlusMore"><i
-                                                                        class="la la-plus"></i></button>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
 
                                 <div class="form-actions text-right">
@@ -243,7 +198,6 @@
                                             <th style="text-align:center;">Perangkat</th>
                                             <th style="text-align:center;">Nama Perangkat</th>
                                             <th style="text-align:center;">Spesifikasi</th>
-                                            <th style="text-align:center;">Ip Address</th>
                                             <th style="text-align:center;">File</th>
                                             <th style="text-align:center;">Status</th>
                                             <th style="text-align:center; width:100px;">Action</th>
@@ -262,16 +216,6 @@
                                                 </td>
                                                 <td class="text-center">
                                                     {{ $device_more_item->specification ?? 'N/A' }}</td>
-                                                <td class="text-center">
-                                                    @php
-                                                        $data_ip = DB::table('ip_address_more')
-                                                            ->where('device_more_id', $device_more_item->id)
-                                                            ->get();
-                                                    @endphp
-                                                    @foreach ($data_ip as $data_ip_item)
-                                                        {{ $data_ip_item->ip_address }} -
-                                                    @endforeach
-                                                </td>
                                                 <td class="text-center">
                                                     <a data-fancybox="gallery"
                                                         data-src="{{ asset('storage/' . $device_more_item->file) }}"
@@ -333,7 +277,6 @@
                                             <th>Perangkat</th>
                                             <th>Nama Perangkat</th>
                                             <th>Spesifikasi</th>
-                                            <th>Ip Address</th>
                                             <th>File</th>
                                             <th>Status</th>
                                             <th>Action</th>
