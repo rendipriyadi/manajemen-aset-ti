@@ -202,12 +202,6 @@
                         class="menu-title" data-i18n="Program Kerja">Program Kerja</span></a>
             </li>
             {{-- @endcan --}}
-            {{-- @can('daily_activity') --}}
-            <li class=" nav-item"><a href="{{ route('backsite.daily_activity.index') }}"><i
-                        class="{{ request()->is('backsite/daily_activity') || request()->is('backsite/daily_activity/*') || request()->is('backsite/*/daily_activity') || request()->is('backsite/*/daily_activity/*') ? 'bx bx-cycling bx-flashing' : 'bx bx-cycling' }}"></i><span
-                        class="menu-title" data-i18n="Aktivitas Harian">Aktivitas Harian</span></a>
-            </li>
-            {{-- @endcan --}}
             {{-- @can('device_hardware') --}}
             <li class=" nav-item"><a href="{{ route('backsite.device_hardware.index') }}"><i
                         class="{{ request()->is('backsite/device_hardware') || request()->is('backsite/device_hardware/*') || request()->is('backsite/*/device_hardware') || request()->is('backsite/*/device_hardware/*') ? 'bx bx-laptop bx-flashing' : 'bx bx-laptop' }}"></i><span

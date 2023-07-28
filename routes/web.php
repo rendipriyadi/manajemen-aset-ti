@@ -92,14 +92,6 @@ Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => ['aut
     Route::resource('employee', EmployeeController::class);
     // work_program
     Route::resource('work_program', WorkProgramController::class);
-    // daily_activity
-    Route::controller(DailyActivityController::class)->group(function () {
-        Route::post('/daily_activity/form_upload', 'form_upload')->name('daily_activity.form_upload');
-        Route::post('/daily_activity/upload', 'upload')->name('daily_activity.upload');
-        Route::post('/daily_activity/show_file', 'show_file')->name('daily_activity.show_file');
-        Route::delete('/daily_activity/{id}/hapus_file', 'hapus_file')->name('daily_activity.hapus_file');
-    });
-    Route::resource('daily_activity', DailyActivityController::class);
     // software
     Route::controller(SoftwareController::class)->group(function () {
         Route::post('/software/form_upload', 'form_upload')->name('software.form_upload');
