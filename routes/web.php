@@ -106,8 +106,6 @@ Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => ['aut
     Route::resource('processor', ProcessorController::class);
     // hardware_ram
     Route::resource('ram', RamController::class);
-    // network_ip_address
-    Route::resource('ip_address', IpAddressController::class);
     // hardware_type_device
     Route::resource('type_device', TypeDeviceController::class);
     // hardware_device

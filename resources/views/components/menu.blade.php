@@ -177,23 +177,6 @@
                 </ul>
             </li>
 
-            {{-- @can('network') --}}
-            <li class=" nav-item"><a href="#"><i
-                        class="{{ request()->is('backsite/cctv') || request()->is('backsite/cctv/*') || request()->is('backsite/*/cctv') || request()->is('backsite/*/cctv/*') ? 'bx bx-network-chart bx-flashing' : 'bx bx-network-chart' }}"></i><span
-                        class="menu-title" data-i18n="Jaringan">Jaringan</span></a>
-                <ul class="menu-content">
-                    {{-- @can('cctv') --}}
-                    <li
-                        class="{{ request()->is('backsite/ip_address') || request()->is('backsite/ip_address/*') || request()->is('backsite/*/ip_address') || request()->is('backsite/*/ip_address/*') ? 'active' : '' }} ">
-                        <a class="menu-item" href="{{ route('backsite.ip_address.index') }}">
-                            <i></i><span>IP Address</span>
-                        </a>
-                    </li>
-                    {{-- @endcan --}}
-                </ul>
-            </li>
-
-
             <li class=" navigation-header"><span data-i18n="Data">Data</span><i class="la la-ellipsis-h"
                     data-toggle="tooltip" data-placement="right" data-original-title="Data"></i></li>
             {{-- @can('device_hardware') --}}
