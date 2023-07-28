@@ -12,44 +12,11 @@
 
             <li class=" navigation-header"><span data-i18n="Master Data">Master Data</span><i class="la la-ellipsis-h"
                     data-toggle="tooltip" data-placement="right" data-original-title="Master Data"></i></li>
+
             {{-- @can('location') --}}
-            <li class=" nav-item"><a href="#"><i
-                        class="{{ request()->is('backsite/location_detail') || request()->is('backsite/location_detail/*') || request()->is('backsite/*/location_detail') || request()->is('backsite/*/location_detail/*') || request()->is('backsite/location') || request()->is('backsite/location/*') || request()->is('backsite/*/location') || request()->is('backsite/*/location/*') || request()->is('backsite/location_sub') || request()->is('backsite/location_sub/*') || request()->is('backsite/*/location_sub') || request()->is('backsite/*/location_sub/*') || request()->is('backsite/location_room') || request()->is('backsite/location_room/*') || request()->is('backsite/*/location_room') || request()->is('backsite/*/location_room/*') ? 'bx bx-current-location bx-flashing' : 'bx bx-current-location' }}"></i><span
+            <li class=" nav-item"><a href="{{ route('backsite.location.index') }}"><i
+                        class="{{ request()->is('backsite/location') || request()->is('backsite/location/*') || request()->is('backsite/*/location') || request()->is('backsite/*/location/*') ? 'bx bx-current-location bx-flashing' : 'bx bx-current-location' }}"></i><span
                         class="menu-title" data-i18n="Lokasi">Lokasi</span></a>
-                <ul class="menu-content">
-                    {{-- @can('location_detail') --}}
-                    <li
-                        class="{{ request()->is('backsite/location_detail') || request()->is('backsite/location_detail/*') || request()->is('backsite/*/location_detail') || request()->is('backsite/*/location_detail/*') ? 'active' : '' }} ">
-                        <a class="menu-item" href="{{ route('backsite.location_detail.index') }}">
-                            <i></i><span>Detail Lokasi</span>
-                        </a>
-                    </li>
-                    {{-- @endcan --}}
-                    {{-- @can('location') --}}
-                    <li
-                        class="{{ request()->is('backsite/location') || request()->is('backsite/location/*') || request()->is('backsite/*/location') || request()->is('backsite/*/location/*') ? 'active' : '' }} ">
-                        <a class="menu-item" href="{{ route('backsite.location.index') }}">
-                            <i></i><span>Lokasi</span>
-                        </a>
-                    </li>
-                    {{-- @endcan --}}
-                    {{-- @can('location_sub') --}}
-                    <li
-                        class="{{ request()->is('backsite/location_sub') || request()->is('backsite/location_sub/*') || request()->is('backsite/*/location_sub') || request()->is('backsite/*/location_sub/*') ? 'active' : '' }} ">
-                        <a class="menu-item" href="{{ route('backsite.location_sub.index') }}">
-                            <i></i><span>Sub Lokasi</span>
-                        </a>
-                    </li>
-                    {{-- @endcan --}}
-                    {{-- @can('location_room') --}}
-                    <li
-                        class="{{ request()->is('backsite/location_room') || request()->is('backsite/location_room/*') || request()->is('backsite/*/location_room') || request()->is('backsite/*/location_room/*') ? 'active' : '' }} ">
-                        <a class="menu-item" href="{{ route('backsite.location_room.index') }}">
-                            <i></i><span>Ruangan</span>
-                        </a>
-                    </li>
-                    {{-- @endcan --}}
-                </ul>
             </li>
             {{-- @endcan --}}
 
@@ -174,9 +141,8 @@
             </li>
             {{-- @endcan --}}
 
-            <li class=" navigation-header"><span data-i18n="Application">Application</span><i
-                    class="la la-ellipsis-h" data-toggle="tooltip" data-placement="right"
-                    data-original-title="Application"></i></li>
+            <li class=" navigation-header"><span data-i18n="Application">Application</span><i class="la la-ellipsis-h"
+                    data-toggle="tooltip" data-placement="right" data-original-title="Application"></i></li>
 
             @if (Auth::user()->detail_user->type_user_id == 1)
                 {{-- @can('management_access') --}}

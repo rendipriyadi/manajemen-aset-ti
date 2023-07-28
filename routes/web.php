@@ -68,12 +68,6 @@ Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => ['aut
     Route::resource('profile', ProfileController::class);
     // location
     Route::resource('location', LocationController::class);
-    // location sub
-    Route::resource('location_sub', LocationSubController::class);
-    // location room
-    Route::resource('location_room', LocationRoomController::class);
-    // location detail
-    Route::resource('location_detail', LocationDetailController::class);
     // division
     Route::resource('division', DivisionController::class);
     // department
