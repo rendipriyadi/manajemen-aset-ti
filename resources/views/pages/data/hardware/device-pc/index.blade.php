@@ -176,50 +176,6 @@
                                             <textarea rows="5" class="form-control summernote" id="description" name="description"></textarea>
                                         </div>
                                     </div>
-                                    <div class="form-group row" style="margin-left: 5px;">
-                                        <a class="btn btn-primary" data-toggle="collapse"
-                                            href="#multiCollapseExample1" role="button" aria-expanded="false"
-                                            aria-controls="multiCollapseExample1">Tambah IP Address</a>
-                                    </div>
-                                    <div class="row" style="margin-left: 5px;">
-                                        <div class="col">
-                                            <div class="collapse multi-collapse" id="multiCollapseExample1">
-                                                <div class="form-group row">
-                                                    <table align="center" width="100%" id="tablePc">
-                                                        <tr>
-                                                            <th>Port</th>
-                                                            <th>IP Address</th>
-                                                            <th>Keterangan</th>
-                                                            <th style="width:50px;">#</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <input type="text" id="port" name="port[]"
-                                                                    class="form-control" value="{{ old('port') }}"
-                                                                    autocomplete="off">
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" id="ip_address"
-                                                                    name="ip_address[]" class="form-control"
-                                                                    value="{{ old('ip_address') }}" maxlength="15"
-                                                                    autocomplete="off">
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" id="keterangan"
-                                                                    name="keterangan[]" class="form-control"
-                                                                    value="{{ old('keterangan') }}"
-                                                                    autocomplete="off">
-                                                            </td>
-                                                            <td>
-                                                                <button type="button" class="btn-sm btn-success"
-                                                                    id="btnPlusPc"><i class="la la-plus"></i></button>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
 
                                 <div class="form-actions text-right">
@@ -288,7 +244,6 @@
                                             <th style="text-align:center;">Processor</th>
                                             <th style="text-align:center;">Hardisk</th>
                                             <th style="text-align:center;">Ram</th>
-                                            <th style="text-align:center;">Ip Address</th>
                                             <th style="text-align:center;">Status</th>
                                             <th style="text-align:center; width:100px;">Action</th>
                                         </tr>
@@ -325,16 +280,6 @@
                                                         @foreach ($spek_ram as $ram)
                                                             {{ $ram->name }} - {{ $ram->size }} ||
                                                         @endforeach
-                                                    @endforeach
-                                                </td>
-                                                <td class="text-center">
-                                                    @php
-                                                        $data_ip = DB::table('ip_address_pc')
-                                                            ->where('device_pc_id', $device_pc_item->id)
-                                                            ->get();
-                                                    @endphp
-                                                    @foreach ($data_ip as $data_ip_item)
-                                                        {{ $data_ip_item->ip_address }} -
                                                     @endforeach
                                                 </td>
                                                 <td class="text-center">
@@ -394,7 +339,6 @@
                                             <th>Processor</th>
                                             <th>Hardisk</th>
                                             <th>Ram</th>
-                                            <th>Ip Address</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>

@@ -231,60 +231,6 @@
                                                         <textarea rows="5" class="form-control summernote" id="description" name="description">{{ isset($device_pc->description) ? $device_pc->description : '' }}</textarea>
                                                     </div>
                                                 </div>
-                                                <div class="form-group row" style="margin-left: 5px;">
-                                                    <button type="button" class="btn btn-primary">Data IP
-                                                        Address</button>
-                                                </div>
-                                                <div class="row" style="margin-left: 5px;">
-                                                    <div class="col">
-                                                        <div class="form-group row">
-                                                            <table align="center" width="100%" id="tablePc">
-                                                                <tr>
-                                                                    <th>Port</th>
-                                                                    <th>IP Address</th>
-                                                                    <th>Keterangan</th>
-                                                                    <th>#</th>
-                                                                </tr>
-                                                                @foreach ($ip_address as $ip_address_item)
-                                                                    <tr>
-                                                                        <td>
-                                                                            <input type="hidden" id="id"
-                                                                                name="id[]"
-                                                                                value="{{ $ip_address_item->id }}">
-                                                                            <input type="text" id="port"
-                                                                                name="port[]" class="form-control"
-                                                                                value="{{ $ip_address_item->port }}"
-                                                                                autocomplete="off">
-                                                                        </td>
-                                                                        <td>
-                                                                            <input type="text" id="ip_address"
-                                                                                name="ip_address[]" class="form-control"
-                                                                                value="{{ $ip_address_item->ip_address }}"
-                                                                                maxlength="15" autocomplete="off">
-                                                                        </td>
-                                                                        <td>
-                                                                            <input type="text" id="keterangan"
-                                                                                name="keterangan[]" class="form-control"
-                                                                                value="{{ $ip_address_item->keterangan }}"
-                                                                                autocomplete="off">
-                                                                        </td>
-                                                                        <td>
-                                                                            <button type="button"
-                                                                                class="btn-sm btn-success"
-                                                                                id="btnPlusPc"><i
-                                                                                    class="la la-plus"></i></button>
-                                                                            <button type="button"
-                                                                                class="btn-sm btn-danger"
-                                                                                onclick="hapus('{{ $ip_address_item->id }}')"><i
-                                                                                    class="la la-minus"></i></button>
-                                                                        </td>
-                                                                    </tr>
-                                                                @endforeach
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
                                             </div>
 
                                             <div class="text-right form-actions">
@@ -323,26 +269,6 @@
     <script src="{{ asset('/assets/third-party/sweetalert2/sweetalert2.all.min.js') }}"></script>
 
     <script>
-        // create multiple input ip address pc
-        $("#btnPlusPc").click(function() {
-            $("#tablePc").append(`
-                <tr>
-                    <td>
-                        <input type="text" id="port_ip" name="port_ip[]" class="form-control" value="{{ old('port') }}" autocomplete="off">
-                    </td>
-                    <td>
-                        <input type="text" id="address_ip" name="address_ip[]" class="form-control" value="{{ old('ip_address') }}" maxlength="15" autocomplete="off">
-                    </td>
-                    <td>
-                        <input type="text" id="keterangan_ip" name="keterangan_ip[]" class="form-control" value="{{ old('keterangan') }}" autocomplete="off">
-                    </td>
-                    <td>
-                        <button type="button" class="btn-sm btn-danger" id="btnMinPc"><i class="la la-minus"></i></button>
-                    </td>
-                </tr>
-            `);
-        });
-
         $(document).on('click', '#btnMinPc', function() {
             $(this).parents('tr').remove();
         });

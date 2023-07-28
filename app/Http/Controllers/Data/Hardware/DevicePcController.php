@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Storage;
 use Barryvdh\Snappy\Facades\SnappyPdf;
 
 // use model here
-use App\Models\Data\Hardware\IpAddressPc;
 use App\Models\MasterData\Hardware\Hardisk;
 use App\Models\Data\Hardware\TroubleshootPC;
 use App\Models\MasterData\Hardware\Processor;
@@ -69,17 +68,6 @@ class DevicePcController extends Controller
         // store to database
         $device_pc = DevicePc::create($data);
 
-        // save to ip_address_pc
-        foreach ($request->ip_address  as $key => $ip_address) {
-            $data_ip = [
-                'device_pc_id' =>   $device_pc['id'],
-                'port' => $request->port[$key],
-                'ip_address' => $ip_address,
-                'keterangan' => $request->keterangan[$key]
-            ];
-            IpAddressPc::create($data_ip);
-        }
-
         alert()->success('Sukses', 'Data berhasil ditambahkan');
         return redirect()->route('backsite.device_hardware.index');
     }
@@ -96,10 +84,9 @@ class DevicePcController extends Controller
         $decrypt_id = decrypt($id);
         $device_pc = DevicePc::find($decrypt_id);
 
-        $ip_address = IpAddressPc::where('device_pc_id', $device_pc['id'])->get();
         $troubleshoot_pc = TroubleshootPC::where('device_pc_id', $device_pc['id'])->get();
 
-        return view('pages.data.hardware.device-pc.show', compact('device_pc', 'ip_address', 'troubleshoot_pc'));
+        return view('pages.data.hardware.device-pc.show', compact('device_pc', 'troubleshoot_pc'));
     }
 
     /**
@@ -120,10 +107,7 @@ class DevicePcController extends Controller
         $ram = Ram::orderby('name', 'asc')->get();
         $hardisk = Hardisk::orderby('name', 'asc')->get();
 
-        // ip_address_pc
-        $ip_address = IpAddressPc::where('device_pc_id', $device_pc['id'])->get();
-
-        return view('pages.data.hardware.device-pc.edit', compact('device_pc', 'motherboard', 'processor', 'ram', 'hardisk', 'ip_address'));
+        return view('pages.data.hardware.device-pc.edit', compact('device_pc', 'motherboard', 'processor', 'ram', 'hardisk'));
     }
 
     /**
@@ -159,30 +143,6 @@ class DevicePcController extends Controller
         // update to database
         $device_pc->update($data);
 
-        // update ip_address_pc
-        if ($request->ip_address) {
-            foreach ($request->ip_address as $key => $pc) {
-                $ip = IpAddressPc::find($request->id[$key]);
-                $ip->port = $request->port[$key];
-                $ip->ip_address = $pc;
-                $ip->keterangan = $request->keterangan[$key];
-                $ip->save();
-            }
-        }
-
-        // save to ip_address_pc
-        if ($request->address_ip) {
-            foreach ($request->address_ip  as $key => $ip_address) {
-                $data_ip = [
-                    'device_pc_id' =>   $device_pc['id'],
-                    'port' => $request->port_ip[$key],
-                    'ip_address' => $ip_address,
-                    'keterangan' => $request->keterangan_ip[$key]
-                ];
-                IpAddressPc::create($data_ip);
-            }
-        }
-
         alert()->success('Sukses', 'Data berhasil diupdate');
         return redirect()->route('backsite.device_hardware.index');
     }
@@ -210,25 +170,8 @@ class DevicePcController extends Controller
         // hapus location
         $device_pc->forceDelete();
 
-        // delete data ip_address_pc
-        $ip_address = IpAddressPc::where('device_pc_id', $decrypt_id)->forceDelete();
-
         alert()->success('Sukses', 'Data berhasil dihapus');
         return back();
-    }
-
-    // hapus ip_device_pc
-    public function delete_ip(Request $request)
-    {
-        $ip_address = IpAddressPc::find($request->id);
-
-        $ip_address->forceDelete();
-
-        $msg = [
-            'sukses' => 'Data berhasil dihapus'
-        ];
-
-        return response()->json($msg);
     }
 
     // get form riwayat kerusakan
