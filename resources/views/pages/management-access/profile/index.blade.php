@@ -68,21 +68,21 @@
                                             <div class="form-body">
 
                                                 <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="name">Nama </label>
+                                                    <label class="col-md-3 label-control" for="employee_id">Nama </label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="text" id="name" name="name"
+                                                        <input type="text" id="employee_id" name="employee_id"
                                                             class="form-control"
-                                                            value="{{ old('name', isset($user->name) ? $user->name : '') }}"
+                                                            value="{{ old('employee_id', isset($user->employee->name) ? $user->employee->name : '') }}"
                                                             autocomplete="off" readonly>
 
-                                                        @if ($errors->has('name'))
+                                                        @if ($errors->has('employee_id'))
                                                             <p style="font-style: bold; color: red;">
-                                                                {{ $errors->first('name') }}</p>
+                                                                {{ $errors->first('employee_id') }}</p>
                                                         @endif
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="email">Nama </label>
+                                                    <label class="col-md-3 label-control" for="email">Email </label>
                                                     <div class="col-md-9 mx-auto">
                                                         <input type="text" id="email" name="email"
                                                             class="form-control"
@@ -117,17 +117,10 @@
                                                         @if ($user->detail_user->job_position == 1)
                                                             <span class="badge badge-success">{{ 'Manager' }}</span>
                                                         @elseif($user->detail_user->job_position == 2)
-                                                            <span class="badge badge-cyan">{{ 'Kepala Departemen' }}</span>
-                                                        @elseif($user->detail_user->job_position == 3)
                                                             <span class="badge badge-danger">{{ 'Administrasi' }}</span>
-                                                        @elseif($user->detail_user->job_position == 4)
+                                                        @elseif($user->detail_user->job_position == 3)
                                                             <span
                                                                 class="badge badge-warning">{{ 'Hardware & Jaringan' }}</span>
-                                                        @elseif($user->detail_user->job_position == 5)
-                                                            <span
-                                                                class="badge badge-secondary">{{ 'Peralatan Tol' }}</span>
-                                                        @elseif($user->detail_user->job_position == 6)
-                                                            <span class="badge badge-info">{{ 'Sistem Informasi' }}</span>
                                                         @else
                                                             <span>{{ 'N/A' }}</span>
                                                         @endif

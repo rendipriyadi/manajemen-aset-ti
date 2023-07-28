@@ -21,7 +21,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $user = User::where('name', Auth::user()->name)->first();
+        $user = User::where('employee_id', Auth::user()->employee_id)->first();
 
         return view('pages.management-access.profile.index', compact('user'));
     }
