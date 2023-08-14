@@ -31,7 +31,7 @@
                                 class="mr-1 user-name text-bold-700">{{ Auth::user()->employee->name }}</span><span
                                 class="avatar avatar-online"><img
                                     src="{{ asset('storage/' . Auth::user()->detail_user->icon) }}"
-                                    alt="icon user"><i></i></span></a>
+                                    alt="user icon"><i></i></span></a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
