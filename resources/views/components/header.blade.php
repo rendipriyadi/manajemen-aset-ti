@@ -29,9 +29,13 @@
                     <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link"
                             href="#" data-toggle="dropdown"><span
                                 class="mr-1 user-name text-bold-700">{{ Auth::user()->employee->name ?? 'N/A' }}</span><span
-                                class="avatar avatar-online"><img
-                                    src="{{ Auth::user()->detail_user->icon ? asset('storage/' . Auth::user()->detail_user->icon) : 'N/A' }}"
-                                    alt="user icon"><i></i></span></a>
+                                class="avatar avatar-online">
+                                @if (!empty(Auth::user()->detail_user->icon))
+                                    <img src="{{ asset('storage/' . Auth::user()->detail_user?->icon) }}"
+                                        alt="user icon">
+                                @endif
+                                <i></i>
+                            </span></a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
