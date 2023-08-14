@@ -80,8 +80,8 @@
                                                             <option value="{{ '' }}" disabled selected>Choose
                                                             </option>
                                                             @foreach ($employee as $key => $employee_item)
-                                                                <option value="{{ $employee_item->nip }}">
-                                                                    {{ $employee_item->nip == $user->employee_id ? 'selected' : '' }}
+                                                                <option value="{{ $employee_item->nip }}"
+                                                                    {{ $employee_item->nip == $user->employee_id ? 'selected' : '' }}>
                                                                     {{ $employee_item->name }}</option>
                                                             @endforeach
                                                         </select>
