@@ -20,7 +20,7 @@ class DetailUserSeeder extends Seeder
             [
                 'user_id'        => 1,
                 'type_user_id'   => 1,
-                'job_position'   => null,
+                'job_position'   => 2,
                 'status'         => 1,
                 'created_at'     => '2022-04-22 00:00:00',
                 'updated_at'     => '2022-04-22 00:00:00',

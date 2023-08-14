@@ -19,9 +19,9 @@ class UserSeeder extends Seeder
     {
         $user = [
             [
-                'name'           => 'Administrator',
-                'email'          => 'admin@mail.com',
-                'password'       => Hash::make('poekkid28'),
+                'employee_id'    => 'M2007001',
+                'email'          => 'lidia.prasida@citramarga.com',
+                'password'       => Hash::make('itcmnp123'),
                 'remember_token' => null,
                 'created_at'     => '2022-04-22 00:00:00',
                 'updated_at'     => '2022-04-22 00:00:00',
