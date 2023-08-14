@@ -40,10 +40,13 @@
                 </div>
             </div>
 
-            <div class="row ml-1 mb-2">
-                <a href="{{ route('backsite.device_division.create') }}" class="btn btn-success text-white"></i>
-                    Tambah Data</a>
-            </div>
+            @if (Auth::user()->detail_user->type_user_id == 2)
+                <div class="row ml-1 mb-2">
+                    <a href="{{ route('backsite.device_division.create') }}" class="btn btn-success text-white"></i>
+                        Tambah Data</a>
+                </div>
+            @endif
+
             <div class="row ml-1 mb-2">
                 <form class="form" action="{{ route('backsite.device_division.export-pdf') }}" method="POST">
 
@@ -67,144 +70,147 @@
                 </form>
             </div>
 
-            {{-- table card --}}
-            <div class="content-body">
-                <section id="table-home">
-                    <!-- Zero configuration table -->
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Lidivision</h4>
-                                    <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
-                                    <div class="heading-elements">
-                                        <ul class="mb-0 list-inline">
-                                            <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                            <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                            <!-- <li><a data-action="close"><i class="ft-x"></i></a></li> -->
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="card-content collapse show">
-                                    <div class="card-body card-dashboard">
-
-                                        <div class="table-responsive">
-                                            <table
-                                                class="table table-striped table-bordered text-inputs-searching default-table">
-                                                <thead>
-                                                    <tr>
-                                                        <th style="text-align:center; width:20px;">No</th>
-                                                        <th style="text-align:center;">QR code</th>
-                                                        <th style="text-align:center;">Divisi</th>
-                                                        <th style="text-align:center;">Perangkat Tambahan</th>
-                                                        <th style="text-align:center;">Lokasi</th>
-                                                        <th style="text-align:center;">Status</th>
-                                                        <th style="text-align:center; width:100px;">Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @forelse($device_division as $key => $device_division_item)
-                                                        <tr data-entry-id="{{ $device_division_item->id }}">
-                                                            <td class="text-center">{{ $loop->iteration }}</td>
-                                                            <td class="text-center">
-                                                                @php
-                                                                    $route = route('backsite.device_division.show-barcode', $device_division_item->id);
-                                                                @endphp
-                                                                {!! QrCode::size(100)->generate(url($route)) !!}
-                                                            </td>
-                                                            <td class="text-center">
-                                                                {{ $device_division_item->division->name ?? 'N/A' }}
-                                                            </td>
-                                                            <td class="text-center">
-                                                                @foreach (explode(',', $device_division_item->device_more_id) as $data_more)
-                                                                    @php
-                                                                        $spek_more = DB::table('device_more')
-                                                                            ->join('hardware_type_device', 'device_more.type_device_id', '=', 'hardware_type_device.id')
-                                                                            ->select('device_more.*', 'hardware_type_device.name as name_type_device')
-                                                                            ->where('device_more.id', $data_more)
-                                                                            ->get();
-                                                                    @endphp
-                                                                    @foreach ($spek_more as $more)
-                                                                        <span
-                                                                            class="badge badge-success">{{ $more->no_asset ?? 'N/A' }}</span>
-                                                                        - {{ $more->name_type_device }} -
-                                                                        {{ $more->name }} ||
-                                                                    @endforeach
-                                                                @endforeach
-                                                            </td>
-                                                            <td class="text-center">
-                                                                {{ $device_division_item->location->name ?? 'N/A' }}
-                                                            </td>
-                                                            <td class="text-center">
-                                                                @if ($device_division_item->status == 1)
-                                                                    <span
-                                                                        class="badge badge-info">{{ 'Aktif' }}</span>
-                                                                @elseif($device_division_item->status == 2)
-                                                                    <span
-                                                                        class="badge badge-danger">{{ 'Tidak Aktif' }}</span>
-                                                                @else
-                                                                    <span>{{ 'N/A' }}</span>
-                                                                @endif
-                                                            </td>
-                                                            <td class="text-center">
-                                                                <div class="mb-1 mr-1 btn-group">
-                                                                    <button type="button"
-                                                                        class="btn btn-info btn-sm dropdown-toggle"
-                                                                        data-toggle="dropdown" aria-haspopup="true"
-                                                                        aria-expanded="false">Action</button>
-                                                                    <div class="dropdown-menu">
-                                                                        <a href="#mymodal"
-                                                                            data-remote="{{ route('backsite.device_division.show', encrypt($device_division_item->id)) }}"
-                                                                            data-toggle="modal" data-target="#mymodal"
-                                                                            data-title="Detail division"
-                                                                            class="dropdown-item">
-                                                                            Show
-                                                                        </a>
-                                                                        <a class="dropdown-item"
-                                                                            href="{{ route('backsite.device_division.edit', encrypt($device_division_item->id)) }}">
-                                                                            Edit
-                                                                        </a>
-                                                                        <form
-                                                                            action="{{ route('backsite.device_division.destroy', encrypt($device_division_item->id)) }}"
-                                                                            method="POST"
-                                                                            onsubmit="return confirm('Anda yakin ingin menghapus data ini ?');">
-                                                                            <input type="hidden" name="_method"
-                                                                                value="DELETE">
-                                                                            <input type="hidden" name="_token"
-                                                                                value="{{ csrf_token() }}">
-                                                                            <input type="submit" class="dropdown-item"
-                                                                                value="Delete">
-                                                                        </form>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    @empty
-                                                        {{-- not found --}}
-                                                    @endforelse
-                                                </tbody>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th>No</th>
-                                                        <th>QR code</th>
-                                                        <th>Divisi</th>
-                                                        <th>Perangkat Tambahan</th>
-                                                        <th>Lokasi</th>
-                                                        <th>Status</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </tfoot>
-                                            </table>
+            @if (Auth::user()->detail_user->type_user_id == 2)
+                {{-- table card --}}
+                <div class="content-body">
+                    <section id="table-home">
+                        <!-- Zero configuration table -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Lidivision</h4>
+                                        <a class="heading-elements-toggle"><i
+                                                class="la la-ellipsis-v font-medium-3"></i></a>
+                                        <div class="heading-elements">
+                                            <ul class="mb-0 list-inline">
+                                                <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                                <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                                                <!-- <li><a data-action="close"><i class="ft-x"></i></a></li> -->
+                                            </ul>
                                         </div>
+                                    </div>
 
+                                    <div class="card-content collapse show">
+                                        <div class="card-body card-dashboard">
+
+                                            <div class="table-responsive">
+                                                <table
+                                                    class="table table-striped table-bordered text-inputs-searching default-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="text-align:center; width:20px;">No</th>
+                                                            <th style="text-align:center;">QR code</th>
+                                                            <th style="text-align:center;">Divisi</th>
+                                                            <th style="text-align:center;">Perangkat Tambahan</th>
+                                                            <th style="text-align:center;">Lokasi</th>
+                                                            <th style="text-align:center;">Status</th>
+                                                            <th style="text-align:center; width:100px;">Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @forelse($device_division as $key => $device_division_item)
+                                                            <tr data-entry-id="{{ $device_division_item->id }}">
+                                                                <td class="text-center">{{ $loop->iteration }}</td>
+                                                                <td class="text-center">
+                                                                    @php
+                                                                        $route = route('backsite.device_division.show-barcode', $device_division_item->id);
+                                                                    @endphp
+                                                                    {!! QrCode::size(100)->generate(url($route)) !!}
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    {{ $device_division_item->division->name ?? 'N/A' }}
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    @foreach (explode(',', $device_division_item->device_more_id) as $data_more)
+                                                                        @php
+                                                                            $spek_more = DB::table('device_more')
+                                                                                ->join('hardware_type_device', 'device_more.type_device_id', '=', 'hardware_type_device.id')
+                                                                                ->select('device_more.*', 'hardware_type_device.name as name_type_device')
+                                                                                ->where('device_more.id', $data_more)
+                                                                                ->get();
+                                                                        @endphp
+                                                                        @foreach ($spek_more as $more)
+                                                                            <span
+                                                                                class="badge badge-success">{{ $more->no_asset ?? 'N/A' }}</span>
+                                                                            - {{ $more->name_type_device }} -
+                                                                            {{ $more->name }} ||
+                                                                        @endforeach
+                                                                    @endforeach
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    {{ $device_division_item->location->name ?? 'N/A' }}
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    @if ($device_division_item->status == 1)
+                                                                        <span
+                                                                            class="badge badge-info">{{ 'Aktif' }}</span>
+                                                                    @elseif($device_division_item->status == 2)
+                                                                        <span
+                                                                            class="badge badge-danger">{{ 'Tidak Aktif' }}</span>
+                                                                    @else
+                                                                        <span>{{ 'N/A' }}</span>
+                                                                    @endif
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    <div class="mb-1 mr-1 btn-group">
+                                                                        <button type="button"
+                                                                            class="btn btn-info btn-sm dropdown-toggle"
+                                                                            data-toggle="dropdown" aria-haspopup="true"
+                                                                            aria-expanded="false">Action</button>
+                                                                        <div class="dropdown-menu">
+                                                                            <a href="#mymodal"
+                                                                                data-remote="{{ route('backsite.device_division.show', encrypt($device_division_item->id)) }}"
+                                                                                data-toggle="modal" data-target="#mymodal"
+                                                                                data-title="Detail division"
+                                                                                class="dropdown-item">
+                                                                                Show
+                                                                            </a>
+                                                                            <a class="dropdown-item"
+                                                                                href="{{ route('backsite.device_division.edit', encrypt($device_division_item->id)) }}">
+                                                                                Edit
+                                                                            </a>
+                                                                            <form
+                                                                                action="{{ route('backsite.device_division.destroy', encrypt($device_division_item->id)) }}"
+                                                                                method="POST"
+                                                                                onsubmit="return confirm('Anda yakin ingin menghapus data ini ?');">
+                                                                                <input type="hidden" name="_method"
+                                                                                    value="DELETE">
+                                                                                <input type="hidden" name="_token"
+                                                                                    value="{{ csrf_token() }}">
+                                                                                <input type="submit"
+                                                                                    class="dropdown-item" value="Delete">
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        @empty
+                                                            {{-- not found --}}
+                                                        @endforelse
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th>No</th>
+                                                            <th>QR code</th>
+                                                            <th>Divisi</th>
+                                                            <th>Perangkat Tambahan</th>
+                                                            <th>Lokasi</th>
+                                                            <th>Status</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </section>
-            </div>
+                    </section>
+                </div>
+            @endif
 
         </div>
     </div>

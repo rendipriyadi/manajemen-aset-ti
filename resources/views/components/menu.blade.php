@@ -10,136 +10,145 @@
                 </a>
             </li>
 
-            <li class=" navigation-header"><span data-i18n="Master Data">Master Data</span><i class="la la-ellipsis-h"
-                    data-toggle="tooltip" data-placement="right" data-original-title="Master Data"></i></li>
+            @if (Auth::user()->detail_user->type_user_id == 1 || Auth::user()->detail_user->type_user_id == 2)
+                <li class=" navigation-header"><span data-i18n="Master Data">Master Data</span><i
+                        class="la la-ellipsis-h" data-toggle="tooltip" data-placement="right"
+                        data-original-title="Master Data"></i></li>
+            @endif
 
-            {{-- @can('location') --}}
-            <li class=" nav-item"><a href="{{ route('backsite.location.index') }}"><i
-                        class="{{ request()->is('backsite/location') || request()->is('backsite/location/*') || request()->is('backsite/*/location') || request()->is('backsite/*/location/*') ? 'bx bx-current-location bx-flashing' : 'bx bx-current-location' }}"></i><span
-                        class="menu-title" data-i18n="Lokasi">Lokasi</span></a>
-            </li>
-            {{-- @endcan --}}
+            @if (Auth::user()->detail_user->type_user_id == 1)
+                {{-- @can('location') --}}
+                <li class=" nav-item"><a href="{{ route('backsite.location.index') }}"><i
+                            class="{{ request()->is('backsite/location') || request()->is('backsite/location/*') || request()->is('backsite/*/location') || request()->is('backsite/*/location/*') ? 'bx bx-current-location bx-flashing' : 'bx bx-current-location' }}"></i><span
+                            class="menu-title" data-i18n="Lokasi">Lokasi</span></a>
+                </li>
+                {{-- @endcan --}}
 
-            {{-- @can('division') --}}
-            <li class=" nav-item"><a href="#"><i
-                        class="{{ request()->is('backsite/division') || request()->is('backsite/division/*') || request()->is('backsite/*/division') || request()->is('backsite/*/division/*') || request()->is('backsite/department') || request()->is('backsite/department/*') || request()->is('backsite/*/department') || request()->is('backsite/*/department/*') || request()->is('backsite/section') || request()->is('backsite/section/*') || request()->is('backsite/*/section') || request()->is('backsite/*/section/*') ? 'bx bx-store-alt bx-flashing' : 'bx bx-store-alt' }}"></i><span
-                        class="menu-title" data-i18n="Divisi">Divisi</span></a>
-                <ul class="menu-content">
-                    {{-- @can('division') --}}
-                    <li
-                        class="{{ request()->is('backsite/division') || request()->is('backsite/division/*') || request()->is('backsite/*/division') || request()->is('backsite/*/division/*') ? 'active' : '' }} ">
-                        <a class="menu-item" href="{{ route('backsite.division.index') }}">
-                            <i></i><span>Divisi</span>
-                        </a>
-                    </li>
-                    {{-- @endcan --}}
-                    {{-- @can('department') --}}
-                    <li
-                        class="{{ request()->is('backsite/department') || request()->is('backsite/department/*') || request()->is('backsite/*/department') || request()->is('backsite/*/department/*') ? 'active' : '' }} ">
-                        <a class="menu-item" href="{{ route('backsite.department.index') }}">
-                            <i></i><span>Departemen</span>
-                        </a>
-                    </li>
-                    {{-- @endcan --}}
-                    {{-- @can('section-') --}}
-                    <li
-                        class="{{ request()->is('backsite/section') || request()->is('backsite/section/*') || request()->is('backsite/*/section') || request()->is('backsite/*/section/*') ? 'active' : '' }} ">
-                        <a class="menu-item" href="{{ route('backsite.section.index') }}">
-                            <i></i><span>Seksi</span>
-                        </a>
-                    </li>
-                    {{-- @endcan --}}
-                </ul>
-            </li>
-            {{-- @endcan --}}
+                {{-- @can('division') --}}
+                <li class=" nav-item"><a href="#"><i
+                            class="{{ request()->is('backsite/division') || request()->is('backsite/division/*') || request()->is('backsite/*/division') || request()->is('backsite/*/division/*') || request()->is('backsite/department') || request()->is('backsite/department/*') || request()->is('backsite/*/department') || request()->is('backsite/*/department/*') || request()->is('backsite/section') || request()->is('backsite/section/*') || request()->is('backsite/*/section') || request()->is('backsite/*/section/*') ? 'bx bx-store-alt bx-flashing' : 'bx bx-store-alt' }}"></i><span
+                            class="menu-title" data-i18n="Divisi">Divisi</span></a>
+                    <ul class="menu-content">
+                        {{-- @can('division') --}}
+                        <li
+                            class="{{ request()->is('backsite/division') || request()->is('backsite/division/*') || request()->is('backsite/*/division') || request()->is('backsite/*/division/*') ? 'active' : '' }} ">
+                            <a class="menu-item" href="{{ route('backsite.division.index') }}">
+                                <i></i><span>Divisi</span>
+                            </a>
+                        </li>
+                        {{-- @endcan --}}
+                        {{-- @can('department') --}}
+                        <li
+                            class="{{ request()->is('backsite/department') || request()->is('backsite/department/*') || request()->is('backsite/*/department') || request()->is('backsite/*/department/*') ? 'active' : '' }} ">
+                            <a class="menu-item" href="{{ route('backsite.department.index') }}">
+                                <i></i><span>Departemen</span>
+                            </a>
+                        </li>
+                        {{-- @endcan --}}
+                        {{-- @can('section-') --}}
+                        <li
+                            class="{{ request()->is('backsite/section') || request()->is('backsite/section/*') || request()->is('backsite/*/section') || request()->is('backsite/*/section/*') ? 'active' : '' }} ">
+                            <a class="menu-item" href="{{ route('backsite.section.index') }}">
+                                <i></i><span>Seksi</span>
+                            </a>
+                        </li>
+                        {{-- @endcan --}}
+                    </ul>
+                </li>
+                {{-- @endcan --}}
 
-            {{-- @can('employee') --}}
-            <li class=" nav-item"><a href="{{ route('backsite.employee.index') }}"><i
-                        class="{{ request()->is('backsite/employee') || request()->is('backsite/employee/*') || request()->is('backsite/*/employee') || request()->is('backsite/*/employee/*') ? 'bx bx-user-pin bx-flashing' : 'bx bx-user-pin' }}"></i><span
-                        class="menu-title" data-i18n="Karyawan">Karyawan</span></a>
-            </li>
-            {{-- @endcan --}}
+                {{-- @can('employee') --}}
+                <li class=" nav-item"><a href="{{ route('backsite.employee.index') }}"><i
+                            class="{{ request()->is('backsite/employee') || request()->is('backsite/employee/*') || request()->is('backsite/*/employee') || request()->is('backsite/*/employee/*') ? 'bx bx-user-pin bx-flashing' : 'bx bx-user-pin' }}"></i><span
+                            class="menu-title" data-i18n="Karyawan">Karyawan</span></a>
+                </li>
+                {{-- @endcan --}}
+            @endif
 
-            {{-- @can('software') --}}
-            <li class=" nav-item"><a href="{{ route('backsite.software.index') }}"><i
-                        class="{{ request()->is('backsite/software') || request()->is('backsite/software/*') || request()->is('backsite/*/software') || request()->is('backsite/*/software/*') ? 'bx bx-code-block bx-flashing' : 'bx bx-code-block' }}"></i><span
-                        class="menu-title" data-i18n="Software">Software</span></a>
-            </li>
-            {{-- @endcan --}}
+            @if (Auth::user()->detail_user->type_user_id == 2)
+                {{-- @can('software') --}}
+                <li class=" nav-item"><a href="{{ route('backsite.software.index') }}"><i
+                            class="{{ request()->is('backsite/software') || request()->is('backsite/software/*') || request()->is('backsite/*/software') || request()->is('backsite/*/software/*') ? 'bx bx-code-block bx-flashing' : 'bx bx-code-block' }}"></i><span
+                            class="menu-title" data-i18n="Software">Software</span></a>
+                </li>
+                {{-- @endcan --}}
 
-            {{-- @can('Hardware') --}}
-            <li class=" nav-item"><a href="#"><i
-                        class="{{ request()->is('backsite/hardisk') ||request()->is('backsite/hardisk/*') ||request()->is('backsite/*/hardisk') ||request()->is('backsite/*/hardisk/*') ||request()->is('backsite/monitor') ||request()->is('backsite/monitor/*') ||request()->is('backsite/*/monitor') ||request()->is('backsite/*/monitor/*') ||request()->is('backsite/motherboard') ||request()->is('backsite/motherboard/*') ||request()->is('backsite/*/motherboard') ||request()->is('backsite/*/motherboard/*') ||request()->is('backsite/processor') ||request()->is('backsite/processor/*') ||request()->is('backsite/*/processor') ||request()->is('backsite/*/processor/*') ||request()->is('backsite/ram') ||request()->is('backsite/ram/*') ||request()->is('backsite/*/ram') ||request()->is('backsite/*/ram/*') ||request()->is('backsite/type_device') ||request()->is('backsite/type_device/*') ||request()->is('backsite/*/type_device') ||request()->is('backsite/*/type_device/*') ||request()->is('backsite/additional_device') ||request()->is('backsite/additional_device/*') ||request()->is('backsite/*/additional_device') ||request()->is('backsite/*/additional_device/*')? 'bx bx-desktop bx-flashing': 'bx bx-desktop' }}"></i><span
-                        class="menu-title" data-i18n="Hardware">Hardware</span></a>
-                <ul class="menu-content">
-                    <li class=" nav-item"><a href="#"><span class="menu-title"
-                                data-i18n="Komponen">Komponen</span></a>
-                        <ul class="menu-content">
-                            {{-- @can('Hardisk') --}}
-                            <li
-                                class="{{ request()->is('backsite/hardisk') || request()->is('backsite/hardisk/*') || request()->is('backsite/*/hardisk') || request()->is('backsite/*/hardisk/*') ? 'active' : '' }} ">
-                                <a class="menu-item" href="{{ route('backsite.hardisk.index') }}">
-                                    <i></i><span>Hardisk</span>
-                                </a>
-                            </li>
-                            {{-- @endcan --}}
-                            {{-- @can('Motherboard') --}}
-                            <li
-                                class="{{ request()->is('backsite/motherboard') || request()->is('backsite/motherboard/*') || request()->is('backsite/*/motherboard') || request()->is('backsite/*/motherboard/*') ? 'active' : '' }} ">
-                                <a class="menu-item" href="{{ route('backsite.motherboard.index') }}">
-                                    <i></i><span>Motherboard</span>
-                                </a>
-                            </li>
-                            {{-- @endcan --}}
-                            {{-- @can('Prosessor') --}}
-                            <li
-                                class="{{ request()->is('backsite/processor') || request()->is('backsite/processor/*') || request()->is('backsite/*/processor') || request()->is('backsite/*/processor/*') ? 'active' : '' }} ">
-                                <a class="menu-item" href="{{ route('backsite.processor.index') }}">
-                                    <i></i><span>Processor</span>
-                                </a>
-                            </li>
-                            {{-- @endcan --}}
-                            {{-- @can('Ram') --}}
-                            <li
-                                class="{{ request()->is('backsite/ram') || request()->is('backsite/ram/*') || request()->is('backsite/*/ram') || request()->is('backsite/*/ram/*') ? 'active' : '' }} ">
-                                <a class="menu-item" href="{{ route('backsite.ram.index') }}">
-                                    <i></i><span>Ram</span>
-                                </a>
-                            </li>
-                            {{-- @endcan --}}
-                        </ul>
-                    </li>
-                    {{-- @can('Type_Device') --}}
-                    <li
-                        class="{{ request()->is('backsite/type_device') || request()->is('backsite/type_device/*') || request()->is('backsite/*/type_device') || request()->is('backsite/*/type_device/*') ? 'active' : '' }} ">
-                        <a class="menu-item" href="{{ route('backsite.type_device.index') }}">
-                            <i></i><span>Tipe Device</span>
-                        </a>
-                    </li>
-                    {{-- @endcan --}}
-                </ul>
-            </li>
+                {{-- @can('Hardware') --}}
+                <li class=" nav-item"><a href="#"><i
+                            class="{{ request()->is('backsite/hardisk') ||request()->is('backsite/hardisk/*') ||request()->is('backsite/*/hardisk') ||request()->is('backsite/*/hardisk/*') ||request()->is('backsite/monitor') ||request()->is('backsite/monitor/*') ||request()->is('backsite/*/monitor') ||request()->is('backsite/*/monitor/*') ||request()->is('backsite/motherboard') ||request()->is('backsite/motherboard/*') ||request()->is('backsite/*/motherboard') ||request()->is('backsite/*/motherboard/*') ||request()->is('backsite/processor') ||request()->is('backsite/processor/*') ||request()->is('backsite/*/processor') ||request()->is('backsite/*/processor/*') ||request()->is('backsite/ram') ||request()->is('backsite/ram/*') ||request()->is('backsite/*/ram') ||request()->is('backsite/*/ram/*') ||request()->is('backsite/type_device') ||request()->is('backsite/type_device/*') ||request()->is('backsite/*/type_device') ||request()->is('backsite/*/type_device/*') ||request()->is('backsite/additional_device') ||request()->is('backsite/additional_device/*') ||request()->is('backsite/*/additional_device') ||request()->is('backsite/*/additional_device/*')? 'bx bx-desktop bx-flashing': 'bx bx-desktop' }}"></i><span
+                            class="menu-title" data-i18n="Hardware">Hardware</span></a>
+                    <ul class="menu-content">
+                        <li class=" nav-item"><a href="#"><span class="menu-title"
+                                    data-i18n="Komponen">Komponen</span></a>
+                            <ul class="menu-content">
+                                {{-- @can('Hardisk') --}}
+                                <li
+                                    class="{{ request()->is('backsite/hardisk') || request()->is('backsite/hardisk/*') || request()->is('backsite/*/hardisk') || request()->is('backsite/*/hardisk/*') ? 'active' : '' }} ">
+                                    <a class="menu-item" href="{{ route('backsite.hardisk.index') }}">
+                                        <i></i><span>Hardisk</span>
+                                    </a>
+                                </li>
+                                {{-- @endcan --}}
+                                {{-- @can('Motherboard') --}}
+                                <li
+                                    class="{{ request()->is('backsite/motherboard') || request()->is('backsite/motherboard/*') || request()->is('backsite/*/motherboard') || request()->is('backsite/*/motherboard/*') ? 'active' : '' }} ">
+                                    <a class="menu-item" href="{{ route('backsite.motherboard.index') }}">
+                                        <i></i><span>Motherboard</span>
+                                    </a>
+                                </li>
+                                {{-- @endcan --}}
+                                {{-- @can('Prosessor') --}}
+                                <li
+                                    class="{{ request()->is('backsite/processor') || request()->is('backsite/processor/*') || request()->is('backsite/*/processor') || request()->is('backsite/*/processor/*') ? 'active' : '' }} ">
+                                    <a class="menu-item" href="{{ route('backsite.processor.index') }}">
+                                        <i></i><span>Processor</span>
+                                    </a>
+                                </li>
+                                {{-- @endcan --}}
+                                {{-- @can('Ram') --}}
+                                <li
+                                    class="{{ request()->is('backsite/ram') || request()->is('backsite/ram/*') || request()->is('backsite/*/ram') || request()->is('backsite/*/ram/*') ? 'active' : '' }} ">
+                                    <a class="menu-item" href="{{ route('backsite.ram.index') }}">
+                                        <i></i><span>Ram</span>
+                                    </a>
+                                </li>
+                                {{-- @endcan --}}
+                            </ul>
+                        </li>
+                        {{-- @can('Type_Device') --}}
+                        <li
+                            class="{{ request()->is('backsite/type_device') || request()->is('backsite/type_device/*') || request()->is('backsite/*/type_device') || request()->is('backsite/*/type_device/*') ? 'active' : '' }} ">
+                            <a class="menu-item" href="{{ route('backsite.type_device.index') }}">
+                                <i></i><span>Tipe Device</span>
+                            </a>
+                        </li>
+                        {{-- @endcan --}}
+                    </ul>
+                </li>
+            @endif
 
-            <li class=" navigation-header"><span data-i18n="Data">Data</span><i class="la la-ellipsis-h"
-                    data-toggle="tooltip" data-placement="right" data-original-title="Data"></i></li>
-            {{-- @can('device_hardware') --}}
-            <li class=" nav-item"><a href="{{ route('backsite.device_hardware.index') }}"><i
-                        class="{{ request()->is('backsite/device_hardware') || request()->is('backsite/device_hardware/*') || request()->is('backsite/*/device_hardware') || request()->is('backsite/*/device_hardware/*') ? 'bx bx-laptop bx-flashing' : 'bx bx-laptop' }}"></i><span
-                        class="menu-title" data-i18n="Device Hardware">Device Hardware</span></a>
-            </li>
-            {{-- @endcan --}}
-            {{-- @can('device_user') --}}
-            <li class=" nav-item"><a href="{{ route('backsite.device_user.index') }}"><i
-                        class="{{ request()->is('backsite/device_user') || request()->is('backsite/device_user/*') || request()->is('backsite/*/device_user') || request()->is('backsite/*/device_user/*') ? 'bx bx-user-circle bx-flashing' : 'bx bx-user-circle' }}"></i><span
-                        class="menu-title" data-i18n="Device User">Device User</span></a>
-            </li>
-            {{-- @endcan --}}
-            {{-- @can('device_division') --}}
-            <li class=" nav-item"><a href="{{ route('backsite.device_division.index') }}"><i
-                        class="{{ request()->is('backsite/device_division') || request()->is('backsite/device_division/*') || request()->is('backsite/*/device_division') || request()->is('backsite/*/device_division/*') ? 'bx bx-user-circle bx-flashing' : 'bx bx-user-circle' }}"></i><span
-                        class="menu-title" data-i18n="Device Division">Device Division</span></a>
-            </li>
-            {{-- @endcan --}}
+            @if (Auth::user()->detail_user->type_user_id == 2 || Auth::user()->detail_user->type_user_id == 3)
+                <li class=" navigation-header"><span data-i18n="Data">Data</span><i class="la la-ellipsis-h"
+                        data-toggle="tooltip" data-placement="right" data-original-title="Data"></i></li>
+                {{-- @can('device_hardware') --}}
+                <li class=" nav-item"><a href="{{ route('backsite.device_hardware.index') }}"><i
+                            class="{{ request()->is('backsite/device_hardware') || request()->is('backsite/device_hardware/*') || request()->is('backsite/*/device_hardware') || request()->is('backsite/*/device_hardware/*') ? 'bx bx-laptop bx-flashing' : 'bx bx-laptop' }}"></i><span
+                            class="menu-title" data-i18n="Device Hardware">Device Hardware</span></a>
+                </li>
+                {{-- @endcan --}}
+                {{-- @can('device_user') --}}
+                <li class=" nav-item"><a href="{{ route('backsite.device_user.index') }}"><i
+                            class="{{ request()->is('backsite/device_user') || request()->is('backsite/device_user/*') || request()->is('backsite/*/device_user') || request()->is('backsite/*/device_user/*') ? 'bx bx-user-circle bx-flashing' : 'bx bx-user-circle' }}"></i><span
+                            class="menu-title" data-i18n="Device User">Device User</span></a>
+                </li>
+                {{-- @endcan --}}
+                {{-- @can('device_division') --}}
+                <li class=" nav-item"><a href="{{ route('backsite.device_division.index') }}"><i
+                            class="{{ request()->is('backsite/device_division') || request()->is('backsite/device_division/*') || request()->is('backsite/*/device_division') || request()->is('backsite/*/device_division/*') ? 'bx bx-user-circle bx-flashing' : 'bx bx-user-circle' }}"></i><span
+                            class="menu-title" data-i18n="Device Division">Device Division</span></a>
+                </li>
+                {{-- @endcan --}}
+            @endif
 
             <li class=" navigation-header"><span data-i18n="Application">Application</span><i class="la la-ellipsis-h"
                     data-toggle="tooltip" data-placement="right" data-original-title="Application"></i></li>

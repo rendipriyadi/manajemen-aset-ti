@@ -45,14 +45,16 @@
                     <a class="nav-link active" id="baseIcon-tab31" data-toggle="tab" aria-controls="tabIcon31"
                         href="#tabIcon31" aria-expanded="true"><i class="la la-server"></i> Device PC</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="baseIcon-tab32" data-toggle="tab" aria-controls="tabIcon32" href="#tabIcon32"
-                        aria-expanded="false"><i class="la la-desktop"></i> Monitor</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="baseIcon-tab33" data-toggle="tab" aria-controls="tabIcon33" href="#tabIcon33"
-                        aria-expanded="false"><i class="la la-headphones"></i> Aksesoris</a>
-                </li>
+                @if (Auth::user()->detail_user->type_user_id == 2)
+                    <li class="nav-item">
+                        <a class="nav-link" id="baseIcon-tab32" data-toggle="tab" aria-controls="tabIcon32"
+                            href="#tabIcon32" aria-expanded="false"><i class="la la-desktop"></i> Monitor</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="baseIcon-tab33" data-toggle="tab" aria-controls="tabIcon33"
+                            href="#tabIcon33" aria-expanded="false"><i class="la la-headphones"></i> Aksesoris</a>
+                    </li>
+                @endif
                 <li class="nav-item">
                     <a class="nav-link" id="baseIcon-tab34" data-toggle="tab" aria-controls="tabIcon34" href="#tabIcon34"
                         aria-expanded="false"><i class="la la-laptop"></i> Perangkat Tambahan</a>

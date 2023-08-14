@@ -25,25 +25,13 @@
                                 class="ficon ft-maximize"></i></a></li>
                 </ul>
 
-                <ul class="float-center nav navbar-nav">
-                    <form class="form" action="#" method="POST" enctype="multipart/form-data">
-                        <fieldset class="form-group position-relative has-icon-left m-0">
-                            <input type="text" class="form-control" id="email-search"
-                                placeholder="Search by No Asset">
-                            <div class="form-control-position">
-                                <i class="ft-search"></i>
-                            </div>
-                        </fieldset>
-                    </form>
-                </ul>
-
                 <ul class="float-right nav navbar-nav">
                     <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link"
                             href="#" data-toggle="dropdown"><span
-                                class="mr-1 user-name text-bold-700">{{ Auth::user()->name }}</span><span
+                                class="mr-1 user-name text-bold-700">{{ Auth::user()->employee->name }}</span><span
                                 class="avatar avatar-online"><img
-                                    src="{{ asset('/assets/app-assets/images/portrait/small/avatar-s-19.png') }}"
-                                    alt="avatar"><i></i></span></a>
+                                    src="{{ asset('storage/' . Auth::user()->detail_user->icon) }}"
+                                    alt="icon user"><i></i></span></a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
