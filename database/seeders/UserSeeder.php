@@ -26,6 +26,22 @@ class UserSeeder extends Seeder
                 'created_at'     => '2022-04-22 00:00:00',
                 'updated_at'     => '2022-04-22 00:00:00',
             ],
+            [
+                'employee_id'    => 'M2007002',
+                'email'          => 'dwi.ari@citramarga.com',
+                'password'       => Hash::make('itcmnp123'),
+                'remember_token' => null,
+                'created_at'     => '2022-04-22 00:00:00',
+                'updated_at'     => '2022-04-22 00:00:00',
+            ],
+            [
+                'employee_id'    => 'M2007003',
+                'email'          => 'bambang.sutaryadi@citramarga.com',
+                'password'       => Hash::make('itcmnp123'),
+                'remember_token' => null,
+                'created_at'     => '2022-04-22 00:00:00',
+                'updated_at'     => '2022-04-22 00:00:00',
+            ],
         ];
 
         User::insert($user);

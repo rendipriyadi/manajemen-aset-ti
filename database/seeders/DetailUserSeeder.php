@@ -25,6 +25,22 @@ class DetailUserSeeder extends Seeder
                 'created_at'     => '2022-04-22 00:00:00',
                 'updated_at'     => '2022-04-22 00:00:00',
             ],
+            [
+                'user_id'        => 2,
+                'type_user_id'   => 2,
+                'job_position'   => 3,
+                'status'         => 1,
+                'created_at'     => '2022-04-22 00:00:00',
+                'updated_at'     => '2022-04-22 00:00:00',
+            ],
+            [
+                'user_id'        => 3,
+                'type_user_id'   => 3,
+                'job_position'   => 1,
+                'status'         => 1,
+                'created_at'     => '2022-04-22 00:00:00',
+                'updated_at'     => '2022-04-22 00:00:00',
+            ],
         ];
 
         DetailUser::insert($detail_user);
