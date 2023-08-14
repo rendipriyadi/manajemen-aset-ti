@@ -28,7 +28,7 @@
                 <ul class="float-right nav navbar-nav">
                     <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link"
                             href="#" data-toggle="dropdown"><span
-                                class="mr-1 user-name text-bold-700">{{ Auth::user()->employee->name }}</span><span
+                                class="mr-1 user-name text-bold-700">{{ Auth::user()->employee->name ?? 'N/A' }}</span><span
                                 class="avatar avatar-online"><img
                                     src="{{ asset('storage/' . Auth::user()->detail_user->icon) }}"
                                     alt="user icon"><i></i></span></a>
